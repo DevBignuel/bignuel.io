@@ -1,4 +1,6 @@
 <main class="main-homepage">
+
+
         <!-- About -->
         <section class="about-area">
             <div class="container">
@@ -24,12 +26,18 @@
                     <div class="col-md-6">
                         <div class="about-credentials-wrap">
                             <div data-aos="zoom-in" class="aos-init aos-animate">
-                                <div class="banner shadow-box">
-                                    <div class="marquee">
-                                        <div>
-                                          <span>DERNIÈRES ŒUVRES  <b>VEDETTE</b> <img src="assets/img/star1.svg" alt="Star"> DERNIÈRES ŒUVRES  <b>VEDETTE</b> <img src="assets/img/star1.svg" alt="Star"> DERNIÈRES ŒUVRES  <b>VEDETTE</b> <img src="assets/img/star1.svg" alt="Star"> DERNIÈRES ŒUVRES  <b>VEDETTE</b> DERNIÈRES ŒUVRES  <img src="assets/img/star1.svg" alt="Star"> DERNIÈRES ŒUVRES  <b>VEDETTE</b> DERNIÈRES ŒUVRES  <img src="assets/img/star1.svg" alt="Star"></span>
-                                        </div>
-                                      </div>
+                                <div class="banner shadow-box" style="display: flex; align-items: center;">
+                                  <!-- Bouton lecteur à gauche -->
+                                  <button (click)="toggleAudio()" style="font-size: 2rem; background: blanchedalmond; border: none; cursor: pointer; margin-right: 16px; z-index:2;">
+                                    <i [ngClass]="isAudioPlaying ? 'iconoir-pause' : 'iconoir-play'"></i>
+                                  </button>
+                                  <!-- Marquee à droite -->
+                                  <div class="marquee" style="flex: 1;">
+                                    <div>
+                                      <span>SCROLLEZ ACCOMPAGNER D'UNE BONNE  <b>VIBE</b> <img src="assets/img/star1.svg" alt="Star"> SCROLLEZ ACCOMPAGNER D'UNE BONNE   <b>VIBE</b> <img src="assets/img/star1.svg" alt="Star"> SCROLLEZ ACCOMPAGNER D'UNE BONNE   <b>VIBE</b> <img src="assets/img/star1.svg" alt="Star"> SCROLLEZ ACCOMPAGNER D'UNE BONNE   <b>VIBE</b> SCROLLEZ ACCOMPAGNER D'UNE BONNE   <img src="assets/img/star1.svg" alt="Star"> SCROLLEZ ACCOMPAGNER D'UNE BONNE   <b>VIBE</b> SCROLLEZ ACCOMPAGNER D'UNE BONNE   <img src="assets/img/star1.svg" alt="Star"></span>
+                                    </div>
+                                  </div>
+                                  <audio #audioPlayer id="background-audio" src="assets/audio/mbife.mp3"></audio>
                                 </div>
 
                             </div>
@@ -194,3 +202,4 @@
             </div>
         </section>
     </main>
+
