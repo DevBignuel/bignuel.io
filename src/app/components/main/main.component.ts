@@ -1,39 +1,34 @@
-import { Component, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { AudioService } from '../../services/audio.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
-export class MainComponent implements AfterViewInit {
-  @ViewChild('audioPlayer', { static: false }) audioPlayer!: ElementRef<HTMLAudioElement>;
+export class MainComponent implements OnDestroy {
   isAudioPlaying = false;
+  private audioSub: Subscription;
 
-  constructor(private cdr: ChangeDetectorRef) {}
-
-  ngAfterViewInit() {
-    const audio = this.audioPlayer.nativeElement;
-    audio.addEventListener('play', () => {
-      this.isAudioPlaying = true;
-      this.cdr.detectChanges();
-    });
-    audio.addEventListener('pause', () => {
-      this.isAudioPlaying = false;
-      this.cdr.detectChanges();
-    });
-    audio.addEventListener('ended', () => {
-      this.isAudioPlaying = false;
-      this.cdr.detectChanges();
-    });
+  constructor(public audioService: AudioService, private cdr: ChangeDetectorRef) {
+    this.audioSub = this.audioService.isPlaying$.subscribe(
+      playing => {
+        this.isAudioPlaying = playing;
+        this.cdr.detectChanges();
+      }
+    );
   }
 
   toggleAudio() {
-    const audio: HTMLAudioElement = this.audioPlayer.nativeElement;
-    if (audio.paused) {
-      audio.play();
+    if (this.audioService.isPlaying()) {
+      this.audioService.pause();
     } else {
-      audio.pause();
+      this.audioService.play();
     }
-    // isAudioPlaying sera mis à jour automatiquement par les listeners
+  }
+
+  ngOnDestroy() {
+    this.audioSub.unsubscribe();
   }
 }
