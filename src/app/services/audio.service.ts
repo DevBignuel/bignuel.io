@@ -10,7 +10,7 @@ export class AudioService {
   public isPlaying$ = this.playingSubject.asObservable();
 
   constructor() {
-    this.audio = new Audio('assets/audio/mbife.mp3');
+    this.audio = new Audio('assets/audio/nabo.mp4');
     this.audio.loop = true;
 
     this.audio.addEventListener('play', () => this.playingSubject.next(true));
