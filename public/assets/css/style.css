@@ -20,8 +20,21 @@
 
 */
 :root {
-    --primary_color: #FFD600;
-    --dark: #323232;
+    /* Couleur principale - Bleu Glacier Apple */
+    --primary_color: #007AFF;
+    --primary_light: rgba(0, 122, 255, 0.15);
+    --primary_glass: rgba(0, 122, 255, 0.72);
+
+    --dark: #1d1d1f;
+
+    /* Effets Liquid Glass */
+    --glass_bg: rgba(255, 255, 255, 0.72);
+    --glass_border: rgba(0, 122, 255, 0.18);
+    --glass_shadow: rgba(0, 122, 255, 0.1);
+
+    /* Backdrop effects */
+    --backdrop_blur: blur(20px);
+    --backdrop_saturate: saturate(180%);
 }
 *,*::before,*::after {
     margin: 0;
